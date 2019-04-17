@@ -1,78 +1,18 @@
-# Alexa-Skill-using-Java
+# Alexa Skills Kit SDK Sample - Hello World
+A simple [AWS Lambda](http://aws.amazon.com/lambda) function that demonstrates how to write a Hello World skill for the Amazon Echo using the Alexa SDK.
 
-This is the Alexa skill developed using Java. In Alexa developer console, I've created required intents and the corresponding intent slots to get the required data from the user.
+## Concepts
+This simple sample has no external dependencies or session management, and shows the most basic example of how to create a Lambda function for handling Alexa Skill requests.
 
-Then I've created a Maven project with all the intent handlers which interacts with the RESTful api using HttpURLConnection to fetch the required data that the user has requested.
+## Setup
+To run this example skill you need to do two things. The first is to deploy the example code in lambda, and the second is to configure the Alexa skill to use Lambda.
 
-You can find the RESTful web serivces in this link
-https://github.com/kavyakommineni/Rest-ws-using-Spring-boot-JPA/tree/master/RestWSusingSpringBootJPA
+### AWS Lambda Setup
+Refer to [Hosting a Custom Skill as an AWS Lambda Function](https://developer.amazon.com/docs/custom-skills/host-a-custom-skill-as-an-aws-lambda-function.html) reference for a walkthrough on creating a AWS Lambda function with the correct role for your skill. When creating the function, select the “Author from scratch” option, and select the Java 8 runtime.
 
-This is the jar file that is available here. To deploy in Tomcat server, I've converted the Spring boot jar into war as follows:
+To build the sample, open a terminal and go to the directory containing pom.xml, and run 'mvn org.apache.maven.plugins:maven-assembly-plugin:2.6:assembly -DdescriptorId=jar-with-dependencies package'. This will generate a zip file named "helloworld-1.0-jar-with-dependencies.jar" in the target directory.
+ 
+Once you've created your AWS Lambda function and configured “Alexa Skills Kit” as a trigger, upload the JAR file produced in the previous step and set the handler to the fully qualified class name of your handler function. Finally, copy the ARN for your AWS Lambda function because you’ll need it when configuring your skill in the Amazon Developer console.
 
-In pom.xml,
-change the packaging from jar to war
-
-<packaging>war</packaging>
-
-and the scope of the tomcat should be provided
-
-<scope> provided </scope>
-
-
-The class with main method which has @SpringBootApplication should extend SpringBootServletIniializer and implement the unimplemented method as follows:
-
-@Override
-	
-  protected SpringApplicationBuilder configure(SpringApplicationBuilder builder)
-	
-  {
-	
-  return builder.sources(currentclassName.class);
-	
-  }
-
-Give the maven package goal and get the war file
-
-I've used AWS EC2 to create a linux instance where I've installed Tomcat to deploy my war file.
-
-Here is the sample conversation with Alexa that I've developed.
-
-User  : hello
-
-Alexa : may i know your name?
-
-User  : my name is kavya
-
-Alexa : Hi Kavya, how may i help you
-
-User  : can you read out my orders
-
-Alexa : To know your orders, can you please confirm your customer id?
-
-User  : customer id is customerid
-
-Alexa : Here are your orders for the customerid: ....orders details... What other details can I provide you?
-
-User  : May I know the products of the order
-
-Alexa : To know your products, can you please confirm your order id?
-
-User  : my order id is orderid
-
-Alexa : Displays the requested products for provided orderid. What other details can I provide you?
-
-User  : May I know the seller of the product
-
-Alexa : To know the seller details, can you please confirm your product id?
-
-User  : my product id is productid
-
-Alexa : Displays the sellers for provided productid. What other details can I provide you?
-
-User  : Can you provide the date of the shipment of my order
-
-Alexa : Displays the shipment details with the date for provided orderid. What other details can I provide you?
-
-User  : Bye
-
-Alexa : Goodbye.
+### Alexa Skill Setup
+Please refer to [Developing Your First Skill](https://alexa-skills-kit-sdk-for-java.readthedocs.io/en/latest/Developing-Your-First-Skill.html) for detailed instructions.
