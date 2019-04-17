@@ -5,7 +5,7 @@ Then I've created a Maven project with all the intent handlers which interacts w
 You can find the RESTful web serivces in this link
 https://github.com/kavyakommineni/Rest-ws-using-Spring-boot-JPA/tree/master/RestWSusingSpringBootJPA
 
-This is the jar file that is available here. T deploy onto Tomcat server, I've converted the Spring boot jar into war as follows:
+This is the jar file that is available here. To deploy onto Tomcat server, I've converted the Spring boot jar into war as follows:
 
 In pom.xml,
 change the packaging from jar to war
