@@ -34,6 +34,12 @@ Give the maven package goal and get the war file
 
 I've used AWS EC2 to create a linux instance where I've installed Tomcat to deploy my war file.
 
+Get the Jar file of the Alexa skill project by using the below maven goal:
+
+assembly:assembly-DdescriptorId=jar-with-dependencies package
+
+Deployed the Java skill project jar in AWS Lambda Function code and tested the code in Alexa Development console.
+
 Here is the sample conversation with Alexa that I've developed.
 
 User  : hello
